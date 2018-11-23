@@ -29,9 +29,9 @@ var timeDelay = 4000;
 var displayChoices = function (pNum) {
     if (playerNum === pNum) {
         // console.log("display " + pNum);
-        var r = $("<div>").text("Rock").attr("data-choice", "Rock").addClass("p" + pNum + "-choice");
-        var p = $("<div>").text("Paper").attr("data-choice", "Paper").addClass("p" + pNum + "-choice");
-        var s = $("<div>").text("Scissors").attr("data-choice", "Scissors").addClass("p" + pNum + "-choice");
+        var r = $("<div>").text("Shield").attr("data-choice", "Shield").addClass("p" + pNum + "-choice");
+        var p = $("<div>").text("Fire").attr("data-choice", "Fire").addClass("p" + pNum + "-choice");
+        var s = $("<div>").text("Sword").attr("data-choice", "Sword").addClass("p" + pNum + "-choice");
         var rps = $("<div>").append(r, p, s);
         $("#p" + pNum + "-choices").append(rps);
     }
@@ -252,13 +252,13 @@ playersRef.on("value", function (snap) {
         $("#p1-choices").text(p1Choice);
         $("#p2-choices").text(p2Choice);
 
-        if (p1Choice === "Rock" && p2Choice === "Rock") {
+        if (p1Choice === "shield" && p2Choice === "shield") {
             $("#outcome").text("Tie Game!");
             turn++;
             ref.update({
                 turn: turn
             });
-        } else if (p1Choice === "Rock" && p2Choice === "Paper") {
+        } else if (p1Choice === "shield" && p2Choice === "fire") {
             p1Losses++;
             p1Ref.update({
                 losses: p1Losses
@@ -274,7 +274,7 @@ playersRef.on("value", function (snap) {
             ref.update({
                 turn: turn
             });
-        } else if (p1Choice === "Rock" && p2Choice === "Scissors") {
+        } else if (p1Choice === "shield" && p2Choice === "sword") {
             p1Wins++;
             p1Ref.update({
                 wins: p1Wins
@@ -290,7 +290,7 @@ playersRef.on("value", function (snap) {
             ref.update({
                 turn: turn
             });
-        } else if (p1Choice === "Paper" && p2Choice === "Rock") {
+        } else if (p1Choice === "fire" && p2Choice === "shield") {
             p1Wins++;
             p1Ref.update({
                 wins: p1Wins
@@ -306,13 +306,13 @@ playersRef.on("value", function (snap) {
             ref.update({
                 turn: turn
             });
-        } else if (p1Choice === "Paper" && p2Choice === "Paper") {
+        } else if (p1Choice === "fire" && p2Choice === "fire") {
             $("#outcome").text("Tie Game!");
             turn++;
             ref.update({
                 turn: turn
             });
-        } else if (p1Choice === "Paper" && p2Choice === "Scissors") {
+        } else if (p1Choice === "fire" && p2Choice === "sword") {
             p1Losses++;
             p1Ref.update({
                 losses: p1Losses
@@ -328,7 +328,7 @@ playersRef.on("value", function (snap) {
             ref.update({
                 turn: turn
             });
-        } else if (p1Choice === "Scissors" && p2Choice === "Rock") {
+        } else if (p1Choice === "sword" && p2Choice === "shield") {
             p1Losses++;
             p1Ref.update({
                 losses: p1Losses
@@ -344,7 +344,7 @@ playersRef.on("value", function (snap) {
             ref.update({
                 turn: turn
             });
-        } else if (p1Choice === "Scissors" && p2Choice === "Paper") {
+        } else if (p1Choice === "sword" && p2Choice === "fire") {
             p1Wins++;
             p1Ref.update({
                 wins: p1Wins
@@ -360,7 +360,7 @@ playersRef.on("value", function (snap) {
             ref.update({
                 turn: turn
             });
-        } else if (p1Choice === "Scissors" && p2Choice === "Scissors") {
+        } else if (p1Choice === "sword" && p2Choice === "sword") {
             $("#outcome").text("Tie Game!");
             turn++;
             ref.update({
