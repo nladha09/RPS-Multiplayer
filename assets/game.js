@@ -254,6 +254,7 @@ playersRef.on("value", function (snap) {
 
         if (p1Choice === "shield" && p2Choice === "shield") {
             $("#outcome").text("Tie Game!");
+            console.log("increase turn by 1");
             turn++;
             ref.update({
                 turn: turn
