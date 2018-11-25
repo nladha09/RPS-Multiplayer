@@ -472,17 +472,19 @@ connectionsRef.on("child_removed", function (snap) {
     }
 });
 
-connectionsRef.on("child_removed", function (snap) {
-    var leftKey = snap.getKey();
-    var p2Key;
+// connectionsRef.on("child_removed", function (snap) {
+//     var leftKey = snap.getKey();
+//     var p2Key;
 
-    p2Ref.once("value", function (snap) {
-        if (snap.exists() === true) {
-            p2Key = snap.val().key;
-        }
-    });
+//     p2Ref.once("value", function (snap) {
+//         if (snap.exists() === true) {
+//             p2Key = snap.val().key;
+//         }
+//     });
 
-    if (leftKey === p2Key) {
+$("#reset-button").click(function () {
+    // e.preventDefault();
+    // if (leftKey === p2Key) {
         p2Ref.remove();
         p1Ref.child("choice").remove();
         ref.child("turn").remove();
