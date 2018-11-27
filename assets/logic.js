@@ -29,9 +29,9 @@ $(document).ready(function () {
     };
 
     PlayerChoice = {
-        Rock: "Rock",
-        Paper: "Paper",
-        Scissor: "Scissor"
+        shield: "shield",
+        fire: "fire",
+        sword: "sword"
     }
 
 
@@ -121,20 +121,20 @@ $(document).ready(function () {
                 plNameText.text(player_one_name);
                 $("#p1-name-text").html(plNameText);
 
-                //Create the div to display player one rock text
-                var plRockText = $("<a href='#'>");
-                plRockText.text("ROCK");
-                $("#p1-rock-text").html(plRockText);
+                //Create the div to display player one shield text
+                var plshieldText = $("<a href='#'>");
+                plshieldText.text("shield");
+                $("#p1-shield-text").html(plshieldText);
 
-                //Create the div to display player one paper text
-                var p1PaperText = $("<a href='#'>");
-                p1PaperText.text("PAPER");
-                $("#p1-paper-text").html(p1PaperText);
+                //Create the div to display player one fire text
+                var p1fireText = $("<a href='#'>");
+                p1fireText.text("fire");
+                $("#p1-fire-text").html(p1fireText);
 
-                //Create the div to display player on scissor text
-                var p1ScissorText = $("<a href='#'>");
-                p1ScissorText.text("SCISSOR");
-                $("#p1-scissor-text").html(p1ScissorText);
+                //Create the div to display player on sword text
+                var p1swordText = $("<a href='#'>");
+                p1swordText.text("sword");
+                $("#p1-sword-text").html(p1swordText);
 
                 //Create the div to display player one wins
                 var p1NumWins = $("<h4>");
@@ -170,20 +170,20 @@ $(document).ready(function () {
                 p2NameText.text(player_two_name);
                 $("#p2-name-text").html(p2NameText);
 
-                //Create the div to display player two Rock Element
-                var p2RockText = $("<a href='#'>");
-                p2RockText.text("ROCK");
-                $("#p2-rock-text").html(p2RockText);
+                //Create the div to display player two shield Element
+                var p2shieldText = $("<a href='#'>");
+                p2shieldText.text("shield");
+                $("#p2-shield-text").html(p2shieldText);
 
-                //Create the div to display player two Paper Element
-                var p2PaperText = $("<a href='#'>");
-                p2PaperText.text("PAPER");
-                $("#p2-paper-text").html(p2PaperText);
+                //Create the div to display player two fire Element
+                var p2fireText = $("<a href='#'>");
+                p2fireText.text("fire");
+                $("#p2-fire-text").html(p2fireText);
 
-                //Create the div to display player two Scissor Element
-                var p2ScissorText = $("<a href='#'>");
-                p2ScissorText.text("SCISSOR");
-                $("#p2-scissor-text").html(p2ScissorText);
+                //Create the div to display player two sword Element
+                var p2swordText = $("<a href='#'>");
+                p2swordText.text("sword");
+                $("#p2-sword-text").html(p2swordText);
 
                 //Create the div to display player two Number of Wins Element
                 var p2NumWins = $("<h4>");
@@ -206,40 +206,40 @@ $(document).ready(function () {
     }
 
     //*****Player One Click Events*****//
-    $('#p1-rock-text').on("click", function (e) {
+    $('#p1-shield-text').on("click", function (e) {
         e.preventDefault();
-        player_one_choice = PlayerChoice.Rock;
+        player_one_choice = PlayerChoice.shield;
         startPlaying();
     });
 
-    $('#p1-paper-text').on("click", function (e) {
+    $('#p1-fire-text').on("click", function (e) {
         e.preventDefault();
-        player_one_choice = PlayerChoice.Paper;
+        player_one_choice = PlayerChoice.fire;
         startPlaying();
     });
 
-    $('#p1-scissor-text').on("click", function (e) {
+    $('#p1-sword-text').on("click", function (e) {
         e.preventDefault();
-        player_one_choice = PlayerChoice.Scissor;
+        player_one_choice = PlayerChoice.sword;
         startPlaying();
     });
 
     //*****Player Two Click Event*****??
-    $('#p2-rock-text').on("click", function (e) {
+    $('#p2-shield-text').on("click", function (e) {
         e.preventDefault();
-        player_two_choice = PlayerChoice.Rock;
+        player_two_choice = PlayerChoice.shield;
         startPlaying();
     });
 
-    $('#p2-paper-text').on("click", function (e) {
+    $('#p2-fire-text').on("click", function (e) {
         e.preventDefault();
-        player_two_choice = PlayerChoice.Paper;
+        player_two_choice = PlayerChoice.fire;
         startPlaying();
     });
 
-    $('#p2-scissor-text').on("click", function (e) {
+    $('#p2-sword-text').on("click", function (e) {
         e.preventDefault();
-        player_two_choice = PlayerChoice.Scissor;
+        player_two_choice = PlayerChoice.sword;
         startPlaying();
     });
 
@@ -249,8 +249,8 @@ $(document).ready(function () {
         playerOneRef = gameRef.child('player0/online');
         playerTwoRef = gameRef.child('player1/online');
 
-        //If Player One choose Rock
-        if (player_one_choice === PlayerChoice.Rock) {
+        //If Player One choose shield
+        if (player_one_choice === PlayerChoice.shield) {
             console.log(player_one_choice);
 
             playerOneRef.child('Choice').transaction(function (dataOneSnapshot) {
@@ -264,8 +264,8 @@ $(document).ready(function () {
             });
         };
 
-        //If Player One choose Paper
-        if (player_one_choice === PlayerChoice.Paper) {
+        //If Player One choose fire
+        if (player_one_choice === PlayerChoice.fire) {
             console.log(player_one_choice);
 
             playerOneRef.child('Choice').transaction(function (dataOneSnapshot) {
@@ -279,8 +279,8 @@ $(document).ready(function () {
             });
         };
 
-        //If Player One choose Scissor
-        if (player_one_choice === PlayerChoice.Scissor) {
+        //If Player One choose sword
+        if (player_one_choice === PlayerChoice.sword) {
             console.log(player_one_choice);
 
             playerOneRef.child('Choice').transaction(function (dataOneSnapshot) {
@@ -294,8 +294,8 @@ $(document).ready(function () {
             });
         };
 
-        //If Plyer Two choose Rock
-        if (player_two_choice === PlayerChoice.Rock) {
+        //If Plyer Two choose shield
+        if (player_two_choice === PlayerChoice.shield) {
             console.log(player_two_choice);
 
             playerTwoRef.child('Choice').transaction(function (dataTwoSnapshot) {
@@ -309,8 +309,8 @@ $(document).ready(function () {
             });
         };
 
-        //If Player Two choose Paper
-        if (player_two_choice === PlayerChoice.Paper) {
+        //If Player Two choose fire
+        if (player_two_choice === PlayerChoice.fire) {
             console.log(player_two_choice);
 
             playerTwoRef.child('Choice').transaction(function (dataTwoSnapshot) {
@@ -324,8 +324,8 @@ $(document).ready(function () {
             });
         };
 
-        //If Player Two choose Scissor 
-        if (player_two_choice === PlayerChoice.Scissor) {
+        //If Player Two choose sword 
+        if (player_two_choice === PlayerChoice.sword) {
             console.log(player_two_choice);
 
             playerTwoRef.child('Choice').transaction(function (dataTwoSnapshot) {
@@ -348,57 +348,57 @@ $(document).ready(function () {
 
 
     var calculateWinner = function () {
-        if (player_one_choice === "Rock" && player_two_choice === "Scissor") {
+        if (player_one_choice === "shield" && player_two_choice === "sword") {
             //Player One Wins and Player Two Loses
             player_one_wins++;
             player_two_loses++;
             playerOneWins();
         };
 
-        if (player_one_choice === "Rock" && player_two_choice === "Paper") {
+        if (player_one_choice === "shield" && player_two_choice === "fire") {
             //Player One Loses and Player Two Wins
             player_one_loses++;
             player_two_wins++;
             playerTwoWins();
         };
 
-        if (player_one_choice === "Rock" && player_two_choice === "Rock") {
+        if (player_one_choice === "shield" && player_two_choice === "shield") {
             //No one wins 
             showNoWinners();
         };
 
-        if (player_one_choice === "Paper" && player_two_choice === "Rock") {
+        if (player_one_choice === "fire" && player_two_choice === "shield") {
             //Player One Wins and Player Two Loses
             player_one_wins++;
             player_two_loses++;
             playerOneWins();
         };
 
-        if (player_one_choice === "Paper" && player_two_choice === "Paper") {
+        if (player_one_choice === "fire" && player_two_choice === "fire") {
             //No one wins... 
             showNoWinners();
         };
 
-        if (player_one_choice === "Paper" && player_two_choice === "Scissor") {
+        if (player_one_choice === "fire" && player_two_choice === "sword") {
             //Player One Loses and Player Two Wins
             player_one_loses++;
             player_two_wins++;
             playerTwoWins();
         };
 
-        if (player_one_choice === "Scissor" && player_two_choice === "Scissor") {
+        if (player_one_choice === "sword" && player_two_choice === "sword") {
             //No one wins... 
             showNoWinners();
         };
 
-        if (player_one_choice === "Scissor" && player_two_choice === "Paper") {
+        if (player_one_choice === "sword" && player_two_choice === "fire") {
             //Player One Wins and Player Two Loses
             player_one_wins++;
             player_two_loses++;
             playerOneWins();
         };
 
-        if (player_one_choice === "Scissor" && player_two_choice === "Rock") {
+        if (player_one_choice === "sword" && player_two_choice === "shield") {
             //Player One Loses and Player Two Wins
             player_one_loses++;
             player_two_wins++;
@@ -516,13 +516,13 @@ $(document).ready(function () {
     };
 
     var reStartGame = function () {
-        $('#p1-rock-text').show();
-        $('#p1-paper-text').show();
-        $('#p1-scissor-text').show();
+        $('#p1-shield-text').show();
+        $('#p1-fire-text').show();
+        $('#p1-sword-text').show();
 
-        $('#p2-rock-text').show();
-        $('#p2-paper-text').show();
-        $('#p2-scissor-text').show();
+        $('#p2-shield-text').show();
+        $('#p2-fire-text').show();
+        $('#p2-sword-text').show();
 
         player_one_choice = "";
         player_two_choice = "";
