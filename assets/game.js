@@ -426,88 +426,79 @@ $("#send-button").on("click", function (e) {
     $("#chat-message").val("");
 });
 
+
 // Firebase connection listener
-connectedRef.on("value", function (snap) {
-    if (snap.val()) {
-        var user = connectionsRef.push(true);
-        userKey = user.getKey();
-        user.onDisconnect().remove();
-    }
+connectedRef.on("value", function(snap) {
+	if(snap.val()) {
+		var user = connectionsRef.push(true);
+		userKey = user.getKey();
+		user.onDisconnect().remove();
+	}
 });
 
-connectionsRef.on("child_removed", function (snap) {
-    var leftKey = snap.getKey();
-    var p1Key;
-    p1Ref.once("value", function (snap) {
-        if (snap.exists() === true) {
-            p1Key = snap.val().key;
-        }
-    });
+connectionsRef.on("child_removed", function(snap) {
+	var leftKey = snap.getKey();
+	var p1Key;
+	p1Ref.once("value", function(snap) {
+		if(snap.exists() === true) {
+			p1Key = snap.val().key;
+		}
+	});
 
-    if (leftKey === p1Key) {
-        p1Ref.remove();
-        p2Ref.child("choice").remove();
-        ref.child("turn").remove();
-        $("#p1-name").empty();
-        $("#p1-name").text("Waiting for Player 1");
-        $("#p1-name").removeClass("p1-name-entered");
-        $("#p1-name").addClass("p-not-entered");
-        $("#p1-choices").empty();
-        $("#p2-choices").empty();
-        $("#game-message").empty();
+	if(leftKey === p1Key) {
+		p1Ref.remove();
+		p2Ref.child("choice").remove();
+		ref.child("turn").remove();
+		$("#p1-name").empty();
+		$("#p1-name").text("Waiting for Player 1");
+		$("#p1-name").removeClass("p1-name-entered");
+		$("#p1-name").addClass("p-not-entered");
+		$("#p1-choices").empty();
+		$("#p2-choices").empty();
+		$("#game-message").empty();
 
-        var message = " [ HAS LEFT THE GAME! ]";
-        console.log("p1 has left");
-        var time = new Date().toLocaleString("en-US", {
-            hour: "numeric",
-            minute: "numeric",
-            second: "numeric"
-        });
+		var message = " [ HAS LEFT THE GAME! ]";
+		console.log("p1 has left");
+		var time = new Date().toLocaleString("en-US", {hour: "numeric", minute: "numeric", second: "numeric"});
 
-        chat.push({
-            name: snap.val(),
-            message: message,
-            time: time
-        });
-    }
+		chat.push({
+			name: snap.val(),
+			message: message,
+			time: time
+		});
+	}
 });
 
-// connectionsRef.on("child_removed", function (snap) {
-//     var leftKey = snap.getKey();
-//     var p2Key;
+connectionsRef.on("child_removed", function(snap) {
+	var leftKey = snap.getKey();
+	var p2Key;
 
-//     p2Ref.once("value", function (snap) {
-//         if (snap.exists() === true) {
-//             p2Key = snap.val().key;
-//         }
-//     });
+	p2Ref.once("value", function(snap) {
+		if(snap.exists() === true) {
+			p2Key = snap.val().key;
+		}
+	});
 
-$("#reset-button").click(function () {
-    // e.preventDefault();
-    // if (leftKey === p2Key) {
-        p2Ref.remove();
-        p1Ref.child("choice").remove();
-        ref.child("turn").remove();
-        $("#p2-name").empty();
-        $("#p2-name").text("Waiting for Player 2");
-        $("#p2-name").removeClass("p2-name-entered");
-        $("#p2-name").addClass("p-not-entered");
-        $("#p1-choices").empty();
-        $("#p2-choices").empty();
-        $("#game-message").empty();
+	if(leftKey === p2Key) {
+		p2Ref.remove();
+		p1Ref.child("choice").remove();
+		ref.child("turn").remove();
+		$("#p2-name").empty();
+		$("#p2-name").text("Waiting for Player 2");
+		$("#p2-name").removeClass("p2-name-entered");
+		$("#p2-name").addClass("p-not-entered");
+		$("#p1-choices").empty();
+		$("#p2-choices").empty();
+		$("#game-message").empty();
 
-        var message = " [ HAS LEFT THE GAME! ]";
-        console.log("p2 has left");
-        var time = new Date().toLocaleString("en-US", {
-            hour: "numeric",
-            minute: "numeric",
-            second: "numeric"
-        });
+		var message = " [ HAS LEFT THE GAME! ]";
+		console.log("p2 has left");
+		var time = new Date().toLocaleString("en-US", {hour: "numeric", minute: "numeric", second: "numeric"});
 
-        chat.push({
-            name: snap.val(),
-            message: message,
-            time: time
-        });
-    }
+		chat.push({
+			name: snap.val(),
+			message: message,
+			time: time
+		});
+	}
 });
