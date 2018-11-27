@@ -44,7 +44,7 @@ $(document).ready(function () {
     });
 
     var waitingToJoin = function () {
-        // Listen on "online" location for player 0 
+        // listen on "online" location for player 0 
         gameRef.child("player0/online").on("value", function (snapshot) {
             var value = snapshot.val();
             if (value === null && playingState === PlayingState.Watching) {
@@ -52,7 +52,7 @@ $(document).ready(function () {
             };
         });
 
-        // Listen on "online" location for player 1
+        // listen on "online" location for player 1
         this.gameRef.child("player1/online").on("value", function (snapshot) {
             var value = snapshot.val();
             if (value === null && playingState === PlayingState.Watching) {
@@ -62,13 +62,13 @@ $(document).ready(function () {
     };
 
     var tryingToJoin = function (playerNum) {
-        //Set player to join a slot in the game
+        // set player to join a slot in the game
         playingState = PlayingState.Joining;
         gameRef.child("player" + playerNum + "/online").transaction(function (snapshot) {
             if (snapshot === null) {
                 return true;
             } else {
-                return; //>abort! didn't get in.
+                return; // >abort! didn't get in.
             }
         }, function (error, committed) {
             if (committed) {
@@ -91,13 +91,13 @@ $(document).ready(function () {
             Choice: playerChoice
         });
 
-        //If Player One disconnects from the game. Clear our "online" status so somebody else can join.
+        // if Player One disconnects from the game. Clear our "online" status so somebody else can join.
         gameRef.child("player0").child("online").onDisconnect().remove();
 
-        //If Player Two disconnects from the game. Clear our "online" status so somebody else can join.
+        // if Player Two disconnects from the game. Clear our "online" status so somebody else can join.
         gameRef.child("player1").child("online").onDisconnect().remove();
 
-        //Control the players
+        // control the players
         playerOneRef = gameRef.child('player0/online');
         playerTwoRef = gameRef.child('player1/online');
 
@@ -108,41 +108,41 @@ $(document).ready(function () {
                 player_one_wins = playerOneSnapshot.val().Wins;
                 player_one_loses = playerOneSnapshot.val().Loses;
                 player_one_choice = playerOneSnapshot.val().Choice;
-                //Remove submit button, text label, and replace "waiting for player one"
-                //with the players name
+                // remove submit button, text label, and replace "waiting for player one"
+                // with the players name
                 $("#submit-btn").remove();
                 $("#user").remove();
                 $("#player-one-text").empty();
                 $("#player-one-text").append("Welcome " + player_one_name + " You Are Player 1");
 
-                //*****Create a div to display info for Player One*****//
-                //Create the div to display player one name
+                //***** create a div to display info for Player One *****//
+                // create the div to display player one name
                 var plNameText = $("<h4>");
                 plNameText.text(player_one_name);
                 $("#p1-name-text").html(plNameText);
 
-                //Create the div to display player one shield text
+                // create the div to display player one shield text
                 var plshieldText = $("<a href='#'>");
                 plshieldText.text("shield");
                 $("#p1-shield-text").html(plshieldText);
 
-                //Create the div to display player one fire text
+                // create the div to display player one fire text
                 var p1fireText = $("<a href='#'>");
                 p1fireText.text("fire");
                 $("#p1-fire-text").html(p1fireText);
 
-                //Create the div to display player on sword text
+                // create the div to display player on sword text
                 var p1swordText = $("<a href='#'>");
                 p1swordText.text("sword");
                 $("#p1-sword-text").html(p1swordText);
 
-                //Create the div to display player one wins
+                // create the div to display player one wins
                 var p1NumWins = $("<h4>");
                 p1NumWins.text("Wins: ");
                 p1NumWins.append("<span class='p1Wins'>" + player_one_wins + '</span>');
                 $("#p1-wins-text").html(p1NumWins);
 
-                //Create the div to display player one loses
+                // create the div to display player one loses
                 var p1NumLoses = $("<h4>");
                 p1NumLoses.text("Loses: ");
                 p1NumLoses.append("<span class='p1Loses'>" + player_one_loses + '</span>');
@@ -164,43 +164,43 @@ $(document).ready(function () {
                 $("#user").remove();
                 $("#player-two-text").empty();
                 $("#player-two-text").append("Welcome " + player_two_name + " You Are Player 2");
-                //*****Create the div to display info for Player Two*****//
-                //Create the div to display Player Two Name
+                //***** create the div to display info for Player Two *****//
+                // create the div to display Player Two Name
                 var p2NameText = $("<h4>");
                 p2NameText.text(player_two_name);
                 $("#p2-name-text").html(p2NameText);
 
-                //Create the div to display player two shield Element
+                // create the div to display player two shield Element
                 var p2shieldText = $("<a href='#'>");
                 p2shieldText.text("shield");
                 $("#p2-shield-text").html(p2shieldText);
 
-                //Create the div to display player two fire Element
+                // create the div to display player two fire Element
                 var p2fireText = $("<a href='#'>");
                 p2fireText.text("fire");
                 $("#p2-fire-text").html(p2fireText);
 
-                //Create the div to display player two sword Element
+                // create the div to display player two sword Element
                 var p2swordText = $("<a href='#'>");
                 p2swordText.text("sword");
                 $("#p2-sword-text").html(p2swordText);
 
-                //Create the div to display player two Number of Wins Element
+                // create the div to display player two Number of Wins Element
                 var p2NumWins = $("<h4>");
                 p2NumWins.text("Wins: ");
                 p2NumWins.append("<span class='p2Wins'>" + player_two_wins + '</span>');
                 $("#p2-wins-text").html(p2NumWins);
 
-                //Create the div to display player two Number of Loses Element
+                // create the div to display player two Number of Loses Element
                 var p2NumLoses = $("<h4>");
                 p2NumLoses.text("Loses: ");
                 p2NumLoses.append("<span class='p2Loses'>" + player_two_loses + '</span>');
                 $("#p2-loses-text").html(p2NumLoses);
 
 
-                /*var b = $("<h4>");
-                b.text("Player Two, please wait while Player One makes a selection");
-                $('#player-two-choice').html(b);*/
+                var wait = $("<h4>");
+                wait.text("Player Two, please wait while Player One makes a selection");
+                $('#player-two-choice').html(wait);
             };
         });
     }
@@ -245,11 +245,11 @@ $(document).ready(function () {
 
 
     var startPlaying = function () {
-        //Control the players
+        // control the players
         playerOneRef = gameRef.child('player0/online');
         playerTwoRef = gameRef.child('player1/online');
 
-        //If Player One choose shield
+        // if Player One chose shield
         if (player_one_choice === PlayerChoice.shield) {
             console.log(player_one_choice);
 
@@ -264,7 +264,7 @@ $(document).ready(function () {
             });
         };
 
-        //If Player One choose fire
+        // if Player One chose fire
         if (player_one_choice === PlayerChoice.fire) {
             console.log(player_one_choice);
 
@@ -279,7 +279,7 @@ $(document).ready(function () {
             });
         };
 
-        //If Player One choose sword
+        // if Player One chose sword
         if (player_one_choice === PlayerChoice.sword) {
             console.log(player_one_choice);
 
@@ -294,7 +294,7 @@ $(document).ready(function () {
             });
         };
 
-        //If Plyer Two choose shield
+        // if Player Two chose shield
         if (player_two_choice === PlayerChoice.shield) {
             console.log(player_two_choice);
 
@@ -309,7 +309,7 @@ $(document).ready(function () {
             });
         };
 
-        //If Player Two choose fire
+        // if Player Two chose fire
         if (player_two_choice === PlayerChoice.fire) {
             console.log(player_two_choice);
 
@@ -324,7 +324,7 @@ $(document).ready(function () {
             });
         };
 
-        //If Player Two choose sword 
+        // if Player Two chose sword 
         if (player_two_choice === PlayerChoice.sword) {
             console.log(player_two_choice);
 
@@ -339,7 +339,7 @@ $(document).ready(function () {
             });
         };
 
-        //check if both players have made a selection, call calculateWinner()
+        // check if both players have made a selection, call calculateWinner()
         if (player_one_choice !== "" && player_two_choice !== "") {
             calculateWinner();
         }
@@ -349,57 +349,57 @@ $(document).ready(function () {
 
     var calculateWinner = function () {
         if (player_one_choice === "shield" && player_two_choice === "sword") {
-            //Player One Wins and Player Two Loses
+            // player One Wins and Player Two Loses
             player_one_wins++;
             player_two_loses++;
             playerOneWins();
         };
 
         if (player_one_choice === "shield" && player_two_choice === "fire") {
-            //Player One Loses and Player Two Wins
+            // player One Loses and Player Two Wins
             player_one_loses++;
             player_two_wins++;
             playerTwoWins();
         };
 
         if (player_one_choice === "shield" && player_two_choice === "shield") {
-            //No one wins 
+            // no one wins 
             showNoWinners();
         };
 
         if (player_one_choice === "fire" && player_two_choice === "shield") {
-            //Player One Wins and Player Two Loses
+            // player One Wins and Player Two Loses
             player_one_wins++;
             player_two_loses++;
             playerOneWins();
         };
 
         if (player_one_choice === "fire" && player_two_choice === "fire") {
-            //No one wins... 
+            // no one wins... 
             showNoWinners();
         };
 
         if (player_one_choice === "fire" && player_two_choice === "sword") {
-            //Player One Loses and Player Two Wins
+            // player One Loses and Player Two Wins
             player_one_loses++;
             player_two_wins++;
             playerTwoWins();
         };
 
         if (player_one_choice === "sword" && player_two_choice === "sword") {
-            //No one wins... 
+            // no one wins... 
             showNoWinners();
         };
 
         if (player_one_choice === "sword" && player_two_choice === "fire") {
-            //Player One Wins and Player Two Loses
+            // player One Wins and Player Two Loses
             player_one_wins++;
             player_two_loses++;
             playerOneWins();
         };
 
         if (player_one_choice === "sword" && player_two_choice === "shield") {
-            //Player One Loses and Player Two Wins
+            // player One Loses and Player Two Wins
             player_one_loses++;
             player_two_wins++;
             playerTwoWins();
@@ -408,7 +408,7 @@ $(document).ready(function () {
     };
 
     var playerOneWins = function () {
-        //Control the players
+        // control the players
         playerOneRef = gameRef.child('player0/online');
         playerTwoRef = gameRef.child('player1/online');
 
@@ -426,7 +426,7 @@ $(document).ready(function () {
     };
 
     var playerTwoWins = function () {
-        //Control the players
+        // control the players
         playerOneRef = gameRef.child('player0/online');
         playerTwoRef = gameRef.child('player1/online');
 
@@ -445,12 +445,12 @@ $(document).ready(function () {
 
     var showPlayerOneWon = function () {
         var p1ChoiceTag = $("<h4>");
-        p1ChoiceTag.text("Player One, You Choose ");
+        p1ChoiceTag.text("Player One Chose ");
         p1ChoiceTag.append("<span class='p1ChoiceTag'>" + player_one_choice + '</span>')
         $('#player-one-choice').append(p1ChoiceTag);
 
         var p2ChoiceTag = $("<h4>");
-        p2ChoiceTag.text("Player Two, You choose ");
+        p2ChoiceTag.text("Player Two Chose ");
         p2ChoiceTag.append("<span class='p2ChoiceTag'>" + player_two_choice + '</span>')
         $('#player-two-choice').append(p2ChoiceTag);
 
@@ -458,7 +458,7 @@ $(document).ready(function () {
         winnerTag.text("The Winner is Player One!");
         $('#winner').append(winnerTag);
 
-        //setTimeout Function to remove 
+        // setTimeout Function to remove 
         setTimeout(function () {
             $('#player-one-choice').empty();
             $('#player-two-choice').empty();
@@ -469,12 +469,12 @@ $(document).ready(function () {
 
     var showPlayerTwoWon = function () {
         var p1ChoiceTag = $("<h4>");
-        p1ChoiceTag.text("Player One, You Choose ");
+        p1ChoiceTag.text("Player One Chose");
         p1ChoiceTag.append("<span class='p1ChoiceTag'>" + player_one_choice + '</span>')
         $('#player-one-choice').append(p1ChoiceTag);
 
         var p2ChoiceTag = $("<h4>");
-        p2ChoiceTag.text("Player Two, You choose ");
+        p2ChoiceTag.text("Player Two Chose ");
         p2ChoiceTag.append("<span class='p2ChoiceTag'>" + player_two_choice + '</span>')
         $('#player-two-choice').append(p2ChoiceTag);
 
@@ -482,7 +482,7 @@ $(document).ready(function () {
         winnerTag.text("The Winner is Player Two!");
         $('#winner').append(winnerTag);
 
-        //setTimeout Function to remove 
+        // setTimeout Function to remove 
         setTimeout(function () {
             $('#player-one-choice').empty();
             $('#player-two-choice').empty();
@@ -493,12 +493,12 @@ $(document).ready(function () {
 
     var showNoWinners = function () {
         var p1ChoiceTag = $("<h4>");
-        p1ChoiceTag.text("Player One, You Choose ");
+        p1ChoiceTag.text("Player One Chose ");
         p1ChoiceTag.append("<span class='p1ChoiceTag'>" + player_one_choice + '</span>')
         $('#player-one-choice').append(p1ChoiceTag);
 
         var p2ChoiceTag = $("<h4>");
-        p2ChoiceTag.text("Player Two, You choose ");
+        p2ChoiceTag.text("Player Two Chose ");
         p2ChoiceTag.append("<span class='p2ChoiceTag'>" + player_two_choice + '</span>')
         $('#player-two-choice').append(p2ChoiceTag);
 
@@ -506,7 +506,7 @@ $(document).ready(function () {
         winnerTag.text("It is a tie... There are no winners!");
         $('#winner').append(winnerTag);
 
-        //setTimeout Function to remove 
+        // setTimeout Function to remove 
         setTimeout(function () {
             $('#player-one-choice').empty();
             $('#player-two-choice').empty();
@@ -564,13 +564,13 @@ $(document).ready(function () {
 
         gameRef.child('chat').push(chatObj);
 
-        //Clear message input
+        // clear message input
         msg.val("");
 
         return false;
     });
 
-    //Database listening function for chat
+    // database listening function for chat
     gameRef.child('chat').on('child_added', function (snapshot) {
         if (snapshot.val()) {
             showChats(snapshot);
