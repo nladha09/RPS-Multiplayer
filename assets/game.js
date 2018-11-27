@@ -446,7 +446,8 @@ connectionsRef.on("child_removed", function(snap) {
 	});
 
 	if(leftKey === p1Key) {
-		p1Ref.remove();
+        p1Ref.remove();
+        playersRef.remove();
 		p2Ref.child("choice").remove();
 		ref.child("turn").remove();
 		$("#p1-name").empty();
@@ -480,7 +481,8 @@ connectionsRef.on("child_removed", function(snap) {
 	});
 
 	if(leftKey === p2Key) {
-		p2Ref.remove();
+        p2Ref.remove();
+        playersRef.remove();
 		p1Ref.child("choice").remove();
 		ref.child("turn").remove();
 		$("#p2-name").empty();
