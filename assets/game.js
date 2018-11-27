@@ -448,7 +448,9 @@ connectionsRef.on("child_removed", function(snap) {
 	$("#reset-button").click(function (e) {
         e.preventDefault();
         p1Ref.remove();
+        p2Ref.remove();
         playersRef.remove();
+        p1Ref.child("choice").remove();
 		p2Ref.child("choice").remove();
 		ref.child("turn").remove();
 		$("#p1-name").empty();
@@ -457,36 +459,8 @@ connectionsRef.on("child_removed", function(snap) {
 		$("#p1-name").addClass("p-not-entered");
 		$("#p1-choices").empty();
 		$("#p2-choices").empty();
-		$("#game-message").empty();
-
-		var message = " [ HAS LEFT THE GAME! ]";
-		console.log("p1 has left");
-		var time = new Date().toLocaleString("en-US", {hour: "numeric", minute: "numeric", second: "numeric"});
-
-		chat.push({
-			name: snap.val(),
-			message: message,
-			time: time
-		});
-	});
-
-connectionsRef.on("child_removed", function(snap) {
-	var leftKey = snap.getKey();
-	var p2Key;
-
-	p2Ref.once("value", function(snap) {
-		if(snap.exists() === true) {
-			p2Key = snap.val().key;
-		}
-	});
-
-	$("#reset-button").click(function (e) {
-        e.preventDefault();
-        p2Ref.remove();
-        playersRef.remove();
-		p1Ref.child("choice").remove();
-		ref.child("turn").remove();
-		$("#p2-name").empty();
+        $("#game-message").empty();
+        $("#p2-name").empty();
 		$("#p2-name").text("Waiting for Player 2");
 		$("#p2-name").removeClass("p2-name-entered");
 		$("#p2-name").addClass("p-not-entered");
@@ -495,12 +469,50 @@ connectionsRef.on("child_removed", function(snap) {
 		$("#game-message").empty();
 
 		var message = " [ HAS LEFT THE GAME! ]";
-		console.log("p2 has left");
+        console.log("p1 has left");
+        console.log("p2 has left");
 		var time = new Date().toLocaleString("en-US", {hour: "numeric", minute: "numeric", second: "numeric"});
 
 		chat.push({
 			name: snap.val(),
 			message: message,
 			time: time
-        });
-    });
+		});
+	});
+});
+
+
+// connectionsRef.on("child_removed", function(snap) {
+// 	var leftKey = snap.getKey();
+// 	var p2Key;
+
+// 	p2Ref.once("value", function(snap) {
+// 		if(snap.exists() === true) {
+// 			p2Key = snap.val().key;
+// 		}
+// 	});
+
+// 	$("#reset-button").click(function (e) {
+//         e.preventDefault();
+//         p2Ref.remove();
+//         playersRef.remove();
+// 		p1Ref.child("choice").remove();
+// 		ref.child("turn").remove();
+// 		$("#p2-name").empty();
+// 		$("#p2-name").text("Waiting for Player 2");
+// 		$("#p2-name").removeClass("p2-name-entered");
+// 		$("#p2-name").addClass("p-not-entered");
+// 		$("#p1-choices").empty();
+// 		$("#p2-choices").empty();
+// 		$("#game-message").empty();
+
+// 		var message = " [ HAS LEFT THE GAME! ]";
+// 		console.log("p2 has left");
+// 		var time = new Date().toLocaleString("en-US", {hour: "numeric", minute: "numeric", second: "numeric"});
+
+// 		chat.push({
+// 			name: snap.val(),
+// 			message: message,
+// 			time: time
+//         });
+//     })
