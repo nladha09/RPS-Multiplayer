@@ -428,25 +428,25 @@ $("#send-button").on("click", function (e) {
 
 
 // Firebase connection listener
-// connectedRef.on("value", function(snap) {
-// 	if(snap.val()) {
-// 		var user = connectionsRef.push(true);
-// 		userKey = user.getKey();
-// 		user.onDisconnect().remove();
-// 	}
-// });
+connectedRef.on("value", function(snap) {
+	if(snap.val()) {
+		var user = connectionsRef.push(true);
+		userKey = user.getKey();
+		user.onDisconnect().remove();
+	}
+});
 
-// connectionsRef.on("child_removed", function(snap) {
-// 	var leftKey = snap.getKey();
-// 	var p1Key;
-// 	p1Ref.once("value", function(snap) {
-// 		if(snap.exists() === true) {
-// 			p1Key = snap.val().key;
-// 		}
-// 	});
+connectionsRef.on("child_removed", function(snap) {
+	var leftKey = snap.getKey();
+	var p1Key;
+	p1Ref.once("value", function(snap) {
+		if(snap.exists() === true) {
+			p1Key = snap.val().key;
+		}
+	});
 
-$("#reset-button").on("click", function (e) {
-    e.preventDefault();
+	$("#reset-button").click(function (e) {
+        e.preventDefault();
         p1Ref.remove();
         playersRef.remove();
 		p2Ref.child("choice").remove();
@@ -468,23 +468,20 @@ $("#reset-button").on("click", function (e) {
 			message: message,
 			time: time
 		});
-	}
-);
+	});
 
-// connectionsRef.on("child_removed", function(snap) {
-// 	var leftKey = snap.getKey();
-// 	var p2Key;
+connectionsRef.on("child_removed", function(snap) {
+	var leftKey = snap.getKey();
+	var p2Key;
 
-// 	p2Ref.once("value", function(snap) {
-// 		if(snap.exists() === true) {
-// 			p2Key = snap.val().key;
-// 		}
-// 	});
+	p2Ref.once("value", function(snap) {
+		if(snap.exists() === true) {
+			p2Key = snap.val().key;
+		}
+	});
 
-	// if(leftKey === p2Key) {
-
-    $("#reset-button").on("click", function (e) {
-    e.preventDefault();
+	$("#reset-button").click(function (e) {
+        e.preventDefault();
         p2Ref.remove();
         playersRef.remove();
 		p1Ref.child("choice").remove();
@@ -505,6 +502,5 @@ $("#reset-button").on("click", function (e) {
 			name: snap.val(),
 			message: message,
 			time: time
-		});
-	}
-);
+        });
+    });
