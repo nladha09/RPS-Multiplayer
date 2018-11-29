@@ -279,7 +279,7 @@ playerTurn.on("value", function (snapshot) {
             $("#p2choices").append("<div>fire</div>");
             $("#p2choices").append("<div>sword</div>");
             $("#playerTurn").html("It's your turn!");
-            // After both turns, call rpsResults
+            // After both turns, call Results
         } else if (snapshot.val().turn == 3) {
             $("#playerTurn").html("");
             rpsResults();
