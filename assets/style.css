@@ -1,107 +1,66 @@
-.game-container {
-    /*	display: flex;*/
-    }
-    
-    .game-section {
-        text-align: center;
-        float: left;
-        height: 200px;
-        width: 33.33%;
-        border-top: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
-        border-left: 1px solid #ccc;
-    }
-    
-    .game-section:last-child {
-        border-right: 1px solid #ccc;
-    }
-    
-    #p1-section, #p2-section {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        font-size: 18px;
-        font-weight: bold;
-        padding: 0 0 8px 0;
-    }
-    
-    #outcome-container {
-        font-size: 24px;
-        height: 200px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-    }
-    
-    #p1-choices, #p2-choices {
-        font-size: 22px;
-    }
-    
-    #you-are-message {
-        display: none;
-    }
-    
-    #game-message {
-        display: none;
-        float: right;
-    }
-    
-    #chat-message {
-        height: 34px;
-    }
-    
-    #player-name {
-        height: 34px;
-    }
-    
-    #message-view {
-        border: 1px solid #ccc;
-        width: 100%;
-        height: 150px;
-        list-style-type: none;
-        padding: 7px 12px 7px 12px;
-        overflow: auto;
-    }
-    
-    .name {
-        font-weight: bold;
-    }
-    
-    .timestamp {
-        float: right;
-        color: #bbb;
-        font-size: 12px;
-    }
-    
-    .alert {
-        font-size: 16px;
-    }
-    
-    .p1-choice:hover, .p2-choice:hover, .p1-choice:active, .p2-choice:active {
-        background: #333;
-        color: #fff;
-        cursor: pointer;
-    }
-    
-    .p1-name-entered {
-        font-size: 30px;
-        background: red;
-        color: #fff;
-        line-height: 1.6;
-    }
-    
-    .p2-name-entered {
-        font-size: 30px;
-        background: blue;
-        color: #fff;
-        line-height: 1.6;
-    }
-    
-    .p-not-entered {
-        padding-top: 8px;
-    }
+body {
+	background-image: url("../images/#png");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+h1 {
+	font-size: 50px;
+	text-align: center;
+}
+h2 {
+	font-size: 30px;
+}
+#playerInfo, #playerTurn {
+	margin: auto;
+	width: 20%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-align: center;
+}
+#container {
+	width: 75%;
+	margin: auto;
+}
+#player1, #results, #player2 {
+	float: left;
+	height: 200px;
+	width: 300px;
+	border: 2px solid black;
+	margin: 26px;
+	text-align: center;
+	position: relative;
+}
+#chatbox {
+	clear: both;
+	width: 90%;
+	height: 200px;
+	border: 1px solid black;
+	margin: auto;
+	overflow-y: scroll;
+}
+#messageBar {
+	width: 90%;
+	margin: auto;
+	margin-top: 10px;
+	opacity: 0.7;
+}
+#messageBox {
+	width: 94%;
+	margin-right: 5px;
+}
+#playerName {
+	width: 150px;
+	margin-right: 5px;
+}
+#p1stats, #p2stats {
+	position: absolute;
+	bottom: 0px;
+	left: 90px;
+}
+#p1choices div, #p2choices div {
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
 
-    /* sword - "It's dangerous to go alone! Take this" 
-       shield -
-       fire - 
+
+
