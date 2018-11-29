@@ -51,7 +51,7 @@ player1.on("value", function (snapshot) {
         if (p1 !== null) {
             playerChat.push({
                 player: p1,
-                taunt: " has disconnected",
+                chat: " has disconnected",
                 dateAdded: firebase.database.ServerValue.TIMESTAMP
             });
         };
@@ -75,7 +75,7 @@ player2.on("value", function (snapshot) {
         if (p2 !== null) {
             playerChat.push({
                 player: p2,
-                taunt: " has disconnected",
+                chat: " has disconnected",
                 dateAdded: firebase.database.ServerValue.TIMESTAMP
             });
         };
@@ -100,7 +100,7 @@ $("#enterPlayer").on("click", function () {
     });
     // if there is no player 1
     if (!p1snapshot.exists()) {
-        // sets local variable of player number, to know which page to display choices on and who is taunting
+        // sets local variable of player number, to know which page to display choices on and who is chating
         playerNum = 1;
         // if player disconnects, remove them from the database
         player1.onDisconnect().remove();
@@ -117,7 +117,7 @@ $("#enterPlayer").on("click", function () {
         };
         // if there is no player 2
     } else if (!p2snapshot.exists()) {
-        // sets local variable of player number, to know which page to display choices on and who is taunting
+        // sets local variable of player number, to know which page to display choices on and who is chating
         playerNum = 2;
         // if player disconnects, remove them from the database
         player2.onDisconnect().remove();
@@ -172,42 +172,42 @@ var rpsResults = function () {
             $("#p2choices").html("<br><br><br><h1>" + p2result.val().choice + "</h1>");
             $("#results").html("<br><br><br><br><br><h1>Tie Game!</h1>");
             // Player one wins
-        } else if (p1result.val().choice == "Rock" && p2result.val().choice == "Scissors") {
+        } else if (p1result.val().choice == "shield" && p2result.val().choice == "sword") {
             $("#p1choices").html("<br><br><br><h1>" + p1result.val().choice + "</h1>");
             $("#p2choices").html("<br><br><br><h1>" + p2result.val().choice + "</h1>");
             $("#results").html("<br><br><br><br><br><h1>" + p1 + " wins!</h1>");
             wins1++;
             losses2++;
             // Player two wins
-        } else if (p1result.val().choice == "Rock" && p2result.val().choice == "Paper") {
+        } else if (p1result.val().choice == "shield" && p2result.val().choice == "fire") {
             $("#p1choices").html("<br><br><br><h1>" + p1result.val().choice + "</h1>");
             $("#p2choices").html("<br><br><br><h1>" + p2result.val().choice + "</h1>");
             $("#results").html("<br><br><br><br><br><h1>" + p2 + " wins!</h1>");
             wins2++;
             losses1++;
             // Player two wins
-        } else if (p1result.val().choice == "Paper" && p2result.val().choice == "Scissors") {
+        } else if (p1result.val().choice == "fire" && p2result.val().choice == "sword") {
             $("#p1choices").html("<br><br><br><h1>" + p1result.val().choice + "</h1>");
             $("#p2choices").html("<br><br><br><h1>" + p2result.val().choice + "</h1>");
             $("#results").html("<br><br><br><br><br><h1>" + p2 + " wins!</h1>");
             wins2++;
             losses1++;
             // Player one wins
-        } else if (p1result.val().choice == "Paper" && p2result.val().choice == "Rock") {
+        } else if (p1result.val().choice == "fire" && p2result.val().choice == "shield") {
             $("#p1choices").html("<br><br><br><h1>" + p1result.val().choice + "</h1>");
             $("#p2choices").html("<br><br><br><h1>" + p2result.val().choice + "</h1>");
             $("#results").html("<br><br><br><br><br><h1>" + p1 + " wins!</h1>");
             wins1++;
             losses2++;
             // Player one wins
-        } else if (p1result.val().choice == "Scissors" && p2result.val().choice == "Paper") {
+        } else if (p1result.val().choice == "sword" && p2result.val().choice == "fire") {
             $("#p1choices").html("<br><br><br><h1>" + p1result.val().choice + "</h1>");
             $("#p2choices").html("<br><br><br><h1>" + p2result.val().choice + "</h1>");
             $("#results").html("<br><br><br><br><br><h1>" + p1 + " wins!</h1>");
             wins1++;
             losses2++;
             // Player two wins
-        } else if (p1result.val().choice == "Scissors" && p2result.val().choice == "Rock") {
+        } else if (p1result.val().choice == "sword" && p2result.val().choice == "shield") {
             $("#p1choices").html("<br><br><br><h1>" + p1result.val().choice + "</h1>");
             $("#p2choices").html("<br><br><br><h1>" + p2result.val().choice + "</h1>");
             $("#results").html("<br><br><br><br><br><h1>" + p2 + " wins!</h1>");
@@ -268,16 +268,16 @@ playerTurn.on("value", function (snapshot) {
         // If it's player 1's turn, display choices on their specific page
         if (snapshot.val().turn == 1 && playerNum == 1) {
             $("#p1choices").empty();
-            $("#p1choices").append("<div>Rock</div>");
-            $("#p1choices").append("<div>Paper</div>");
-            $("#p1choices").append("<div>Scissors</div>");
+            $("#p1choices").append("<div>shield</div>");
+            $("#p1choices").append("<div>fire</div>");
+            $("#p1choices").append("<div>sword</div>");
             $("#playerTurn").html("It's your turn!");
             // If it's player 2's turn, display choices on their specific page
         } else if (snapshot.val().turn == 2 && playerNum == 2) {
             $("#p2choices").empty();
-            $("#p2choices").append("<div>Rock</div>");
-            $("#p2choices").append("<div>Paper</div>");
-            $("#p2choices").append("<div>Scissors</div>");
+            $("#p2choices").append("<div>shield</div>");
+            $("#p2choices").append("<div>fire</div>");
+            $("#p2choices").append("<div>sword</div>");
             $("#playerTurn").html("It's your turn!");
             // After both turns, call rpsResults
         } else if (snapshot.val().turn == 3) {
@@ -314,20 +314,20 @@ $("#p2choices").on("click", "div", function () {
 });
 
 // Operation of the chat box below the player cards
-$("#taunt").on("click", function () {
+$("#chat").on("click", function () {
     event.preventDefault();
     var message = $("#messageBox").val().trim();
     $("#messageBox").val("");
     if (playerNum == 1) {
         playerChat.push({
             player: p1 + ": ",
-            taunt: message,
+            chat: message,
             dateAdded: firebase.database.ServerValue.TIMESTAMP
         });
     } else if (playerNum == 2) {
         playerChat.push({
             player: p2 + ": ",
-            taunt: message,
+            chat: message,
             dateAdded: firebase.database.ServerValue.TIMESTAMP
         });
     };
@@ -335,7 +335,7 @@ $("#taunt").on("click", function () {
 
 // Adds new messages to chat box and keeps the box scrolled down to most recent
 playerChat.orderByChild("dateAdded").on("child_added", function (snapshot) {
-    $("#chatbox").append(snapshot.val().player + snapshot.val().taunt + "<br>");
+    $("#chatbox").append(snapshot.val().player + snapshot.val().chat + "<br>");
     var bottom = $("#chatbox").get(0);
     bottom.scrollTop = bottom.scrollHeight;
 });
