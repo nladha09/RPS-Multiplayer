@@ -32,7 +32,7 @@ var losses2 = 0;
 var playerNum = 0;
 
 // initial submit form to enter as a player
-$("#playerInfo").html("<input id=playerName type=text placeholder='Enter your name to begin'><input id=enterPlayer type=submit value=Start>");
+$("#playerInfo").html("<input id=playerName type=text placeholder='Type name to START'><input id=enterPlayer type=submit value=Start>");
 
 
 
