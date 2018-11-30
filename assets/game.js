@@ -172,42 +172,42 @@ var rpsResults = function () {
             $("#p2choices").html("<br><br><br><h1>" + p2result.val().choice + "</h1>");
             $("#results").html("<br><br><br><br><br><h1>Tie Game!</h1>");
             // Player one wins
-        } else if (p1result.val().choice == "shield" && p2result.val().choice == "sword") {
+        } else if (p1result.val().choice == "rock" && p2result.val().choice == "scissors") {
             $("#p1choices").html("<br><br><br><h1>" + p1result.val().choice + "</h1>");
             $("#p2choices").html("<br><br><br><h1>" + p2result.val().choice + "</h1>");
             $("#results").html("<br><br><br><br><br><h1>" + p1 + " wins!</h1>");
             wins1++;
             losses2++;
             // Player two wins
-        } else if (p1result.val().choice == "shield" && p2result.val().choice == "fire") {
+        } else if (p1result.val().choice == "rock" && p2result.val().choice == "paper") {
             $("#p1choices").html("<br><br><br><h1>" + p1result.val().choice + "</h1>");
             $("#p2choices").html("<br><br><br><h1>" + p2result.val().choice + "</h1>");
             $("#results").html("<br><br><br><br><br><h1>" + p2 + " wins!</h1>");
             wins2++;
             losses1++;
             // Player two wins
-        } else if (p1result.val().choice == "fire" && p2result.val().choice == "sword") {
+        } else if (p1result.val().choice == "paper" && p2result.val().choice == "scissors") {
             $("#p1choices").html("<br><br><br><h1>" + p1result.val().choice + "</h1>");
             $("#p2choices").html("<br><br><br><h1>" + p2result.val().choice + "</h1>");
             $("#results").html("<br><br><br><br><br><h1>" + p2 + " wins!</h1>");
             wins2++;
             losses1++;
             // Player one wins
-        } else if (p1result.val().choice == "fire" && p2result.val().choice == "shield") {
+        } else if (p1result.val().choice == "paper" && p2result.val().choice == "rock") {
             $("#p1choices").html("<br><br><br><h1>" + p1result.val().choice + "</h1>");
             $("#p2choices").html("<br><br><br><h1>" + p2result.val().choice + "</h1>");
             $("#results").html("<br><br><br><br><br><h1>" + p1 + " wins!</h1>");
             wins1++;
             losses2++;
             // Player one wins
-        } else if (p1result.val().choice == "sword" && p2result.val().choice == "fire") {
+        } else if (p1result.val().choice == "scissors" && p2result.val().choice == "paper") {
             $("#p1choices").html("<br><br><br><h1>" + p1result.val().choice + "</h1>");
             $("#p2choices").html("<br><br><br><h1>" + p2result.val().choice + "</h1>");
             $("#results").html("<br><br><br><br><br><h1>" + p1 + " wins!</h1>");
             wins1++;
             losses2++;
             // Player two wins
-        } else if (p1result.val().choice == "sword" && p2result.val().choice == "shield") {
+        } else if (p1result.val().choice == "scissors" && p2result.val().choice == "rock") {
             $("#p1choices").html("<br><br><br><h1>" + p1result.val().choice + "</h1>");
             $("#p2choices").html("<br><br><br><h1>" + p2result.val().choice + "</h1>");
             $("#results").html("<br><br><br><br><br><h1>" + p2 + " wins!</h1>");
@@ -268,16 +268,16 @@ playerTurn.on("value", function (snapshot) {
         // If it's player 1's turn, display choices on their specific page
         if (snapshot.val().turn == 1 && playerNum == 1) {
             $("#p1choices").empty();
-            $("#p1choices").append("<div>shield</div>");
-            $("#p1choices").append("<div>fire</div>");
-            $("#p1choices").append("<div>sword</div>");
+            $("#p1choices").append("<div>rock</div>");
+            $("#p1choices").append("<div>paper</div>");
+            $("#p1choices").append("<div>scissors</div>");
             $("#playerTurn").html("It's your turn!");
             // If it's player 2's turn, display choices on their specific page
         } else if (snapshot.val().turn == 2 && playerNum == 2) {
             $("#p2choices").empty();
-            $("#p2choices").append("<div>shield</div>");
-            $("#p2choices").append("<div>fire</div>");
-            $("#p2choices").append("<div>sword</div>");
+            $("#p2choices").append("<div>rock</div>");
+            $("#p2choices").append("<div>paper</div>");
+            $("#p2choices").append("<div>scissors</div>");
             $("#playerTurn").html("It's your turn!");
             // After both turns, call Results
         } else if (snapshot.val().turn == 3) {
